@@ -3,6 +3,10 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpFoundation\Response;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -37,5 +41,31 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    /**
+     * @param Request $request
+     * @param Throwable $e
+     * @return JsonResponse|\Illuminate\Http\Response|Response
+     * @throws Throwable
+     */
+    public function render($request, Throwable $e)
+    {
+        if ($e instanceof ValidationException) {
+            return response()->json([
+                'message' => 'validation exception message',
+                'code' => 20000,
+                'errors' => $e->errors()
+            ], 400);
+        }
+
+        if ($e instanceof ExceptionGoodsNotFound) {
+            return response()->json([
+                'message' => $e->getMessage(),
+                'code' => 20001,
+            ], 404);
+        }
+
+        return parent::render($request, $e);
     }
 }

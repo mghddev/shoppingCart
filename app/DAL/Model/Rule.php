@@ -1,6 +1,7 @@
 <?php
 namespace App\DAL\Model;
 
+use App\Constant\TableName;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Rule extends Model
 {
-    public $table = "rules";
+    public $table = TableName::RULES;
     const CREATED_AT = 'createdAt';
     const UPDATED_AT = 'updatedAt';
 
@@ -20,6 +21,6 @@ class Rule extends Model
      */
     public function goods(): BelongsTo
     {
-        return $this->belongsTo(Goods::class);
+        return $this->belongsTo(Goods::class, 'goodsId', 'id');
     }
 }

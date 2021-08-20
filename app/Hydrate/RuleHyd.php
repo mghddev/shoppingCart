@@ -3,6 +3,7 @@ namespace App\Hydrate;
 
 use App\DAL\Entity\RuleEntity;
 use DateTime;
+use Exception;
 
 /**
  * Class RuleHyd
@@ -59,7 +60,7 @@ class RuleHyd
      * @param array $data
      * @return RuleEntity
      * @throws Exception
-     * @throws \Exception
+     * @throws Exception
      */
     private function arrayToEntity(array $data): RuleEntity
     {
@@ -133,5 +134,36 @@ class RuleHyd
         }
 
         return $arr;
+    }
+
+    /**
+     * @param array $rules
+     * @return array
+     * @throws Exception
+     */
+    function arrayOfArrayToArrayOfEntities(array $rules): array
+    {
+        $res = [];
+
+        foreach ($rules as $item) {
+            $res[] = $this->arrayToEntity($item);
+        }
+
+        return $res;
+    }
+
+    /**
+     * @param RuleEntity[] $rules
+     * @return array
+     */
+    function arrayOfEntityToArrayOfArray(array $rules): array
+    {
+        $res = [];
+
+        foreach ($rules as $entity) {
+            $res[] = $this->entityToArray($entity);
+        }
+
+        return $res;
     }
 }

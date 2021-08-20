@@ -1,5 +1,7 @@
 <?php
 
+use App\Constant\RouteName;
+use App\Http\Controllers\API\HttpApiCalculatePrice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +18,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::group(['prefix' => 'prices'], function() {
+   Route::post('', HttpApiCalculatePrice::class)->name(RouteName::CALCULATE_PRICE);
 });

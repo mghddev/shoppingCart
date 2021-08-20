@@ -11,11 +11,21 @@ use Exception;
  */
 class GoodsHyd
 {
+    private RuleHyd $ruleHyd;
 
     /**
      * @var GoodsEntity
      */
     protected GoodsEntity $entity;
+
+    /**
+     * GoodsHyd constructor.
+     * @param RuleHyd $ruleHyd
+     */
+    public function __construct(RuleHyd $ruleHyd)
+    {
+        $this->ruleHyd = $ruleHyd;
+    }
 
 
     /**
@@ -78,7 +88,7 @@ class GoodsHyd
         }
 
         if (isset($data['rules']) && !empty($data['rules'])) {
-            $entity->setRules($data['rules']);
+            $entity->setRules($this->ruleHyd->arrayOfArrayToArrayOfEntities($data['rules']));
         }
 
         if (isset($data['createdAt'])) {
@@ -109,7 +119,7 @@ class GoodsHyd
         }
 
         if(!empty($entity->getRules())) {
-            $arr['rules'] = $entity->getRules();
+            $arr['rules'] = $this->ruleHyd->arrayOfEntityToArrayOfArray($entity->getRules());
         }
 
         if(!empty($entity->getCreatedAt())) {
@@ -117,5 +127,36 @@ class GoodsHyd
         }
 
         return $arr;
+    }
+
+    /**
+     * @param array $goodsItems
+     * @return array
+     * @throws Exception
+     */
+    function arrayOfArrayToArrayOfEntities(array $goodsItems): array
+    {
+        $res = [];
+
+        foreach ($goodsItems as $item) {
+            $res[] = $this->arrayToEntity($item);
+        }
+
+        return $res;
+    }
+
+    /**
+     * @param GoodsEntity[] $goodsItems
+     * @return array
+     */
+    function arrayOfEntityToArrayOfArray(array $goodsItems): array
+    {
+        $res = [];
+
+        foreach ($goodsItems as $entity) {
+            $res[] = $this->entityToArray($entity);
+        }
+
+        return $res;
     }
 }

@@ -2,6 +2,7 @@
 namespace App\DAL\Model;
 
 
+use App\Constant\TableName;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -11,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Goods extends Model
 {
-    public $table = "goods";
+    public $table = TableName::GOODS;
     const CREATED_AT = 'createdAt';
     const UPDATED_AT = 'updatedAt';
 
@@ -22,6 +23,6 @@ class Goods extends Model
      */
     public function rules(): HasMany
     {
-        return $this->hasMany(Rule::class);
+        return $this->hasMany(Rule::class, 'goodsId', 'id');
     }
 }

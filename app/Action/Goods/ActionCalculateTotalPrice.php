@@ -24,10 +24,10 @@ class ActionCalculateTotalPrice
 
     /**
      * @param string $items
-     * @return PriceDTO[]
+     * @return PriceDTO
      * @throws Exception
      */
-    public function __invoke(string $items): array
+    public function __invoke(string $items): PriceDTO
     {
         $itemsArray = $this->getNumberOfItemsArray($items);
         $minPrices = [];
@@ -41,13 +41,13 @@ class ActionCalculateTotalPrice
             $totalPrice += $minPrices[$key]->getPrice();
             $totalProfit += $minPrices[$key]->getPurchaseProfit();
         }
-        $minPrices['total'] = (new PriceDTO())
+
+
+        return (new PriceDTO())
             ->setName('Total price')
             ->setQuantity($numberOfItems)
             ->setPrice($totalPrice)
             ->setPurchaseProfit($totalProfit);
-
-        return $minPrices;
     }
 
     /**

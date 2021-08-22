@@ -3,6 +3,7 @@ namespace App\DAL\Repository;
 
 use App\DAL\Entity\GoodsEntity;
 use App\DAL\Model\Goods;
+use App\Exceptions\ExceptionGoodsNotFound;
 use App\Hydrate\GoodsHyd;
 use Exception;
 
@@ -37,8 +38,11 @@ class GoodsMysqlRepository implements GoodsRepositoryInterface
             ->with(['rules' => function ($query) use ($neededQuantity) {
                 $query->where('isActive', '=', true)
                     ->where('quantity', '<', $neededQuantity);
-            }])->findOrFail($id)->toArray();
+            }])->find($id);
+        if (empty($goodsItem)) {
+            throw new ExceptionGoodsNotFound(sprintf('There is no item with id %s', $id));
+        }
 
-        return $this->goodsHyd->fromArray($goodsItem)->toEntity();
+        return $this->goodsHyd->fromArray($goodsItem->toArray())->toEntity();
     }
 }

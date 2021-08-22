@@ -12,49 +12,10 @@ use Exception;
 class RuleHyd
 {
 
-
     /**
      * @var RuleEntity
      */
     protected RuleEntity $entity;
-
-
-    /**
-     * @param array $data
-     * @return $this
-     */
-    function fromArray(array $data) : RuleHyd
-    {
-        $this->entity = $this->arrayToEntity($data);
-
-        return $this;
-    }
-
-    /**
-     * @param RuleEntity $entity
-     * @return $this
-     */
-    function fromEntity(RuleEntity $entity): RuleHyd
-    {
-        $this->entity = $entity;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    function toArray(): array
-    {
-        return $this->entityToArray($this->entity);
-    }
-
-    /**
-     * @return RuleEntity
-     */
-    function toEntity(): RuleEntity
-    {
-        return $this->entity;
-    }
 
     /**
      * @param array $data
@@ -98,45 +59,6 @@ class RuleHyd
     }
 
     /**
-     * @param RuleEntity $entity
-     * @return array
-     */
-    private function entityToArray(RuleEntity $entity): array
-    {
-        $arr = [];
-
-        if(!empty($entity->getId())) {
-            $arr['id'] = $entity->getId();
-        }
-
-        if(!empty($entity->getGoodsId())) {
-            $arr['goodsId'] = $entity->getGoodsId();
-        }
-
-        if(!empty($entity->getGoodsEntity())) {
-            $arr['goodsEntity'] = $entity->getGoodsEntity();
-        }
-
-        if(!empty($entity->getQuantity())) {
-            $arr['quantity'] = $entity->getQuantity();
-        }
-
-        if(!empty($entity->getSpecialPrice())) {
-            $arr['specialPrice'] = $entity->getSpecialPrice();
-        }
-
-        if(!empty($entity->getIsActive())) {
-            $arr['isActive'] = $entity->getIsActive();
-        }
-
-        if(!empty($entity->getCreatedAt())) {
-            $arr['createdAt'] = $entity->getCreatedAt();
-        }
-
-        return $arr;
-    }
-
-    /**
      * @param array $rules
      * @return array
      * @throws Exception
@@ -147,21 +69,6 @@ class RuleHyd
 
         foreach ($rules as $item) {
             $res[] = $this->arrayToEntity($item);
-        }
-
-        return $res;
-    }
-
-    /**
-     * @param RuleEntity[] $rules
-     * @return array
-     */
-    function arrayOfEntityToArrayOfArray(array $rules): array
-    {
-        $res = [];
-
-        foreach ($rules as $entity) {
-            $res[] = $this->entityToArray($entity);
         }
 
         return $res;

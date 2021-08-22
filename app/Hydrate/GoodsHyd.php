@@ -41,24 +41,6 @@ class GoodsHyd
     }
 
     /**
-     * @param GoodsEntity $entity
-     * @return $this
-     */
-    function fromEntity(GoodsEntity $entity): GoodsHyd
-    {
-        $this->entity = $entity;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    function toArray(): array
-    {
-        return $this->entityToArray($this->entity);
-    }
-
-    /**
      * @return GoodsEntity
      */
     function toEntity(): GoodsEntity
@@ -98,65 +80,4 @@ class GoodsHyd
         return $entity;
     }
 
-    /**
-     * @param GoodsEntity $entity
-     * @return array
-     */
-    private function entityToArray(GoodsEntity $entity): array
-    {
-        $arr = [];
-
-        if(!empty($entity->getId())) {
-            $arr['id'] = $entity->getId();
-        }
-
-        if(!empty($entity->getTitle())) {
-            $arr['title'] = $entity->getTitle();
-        }
-
-        if(!empty($entity->getUnitPrice())) {
-            $arr['unitPrice'] = $entity->getUnitPrice();
-        }
-
-        if(!empty($entity->getRules())) {
-            $arr['rules'] = $this->ruleHyd->arrayOfEntityToArrayOfArray($entity->getRules());
-        }
-
-        if(!empty($entity->getCreatedAt())) {
-            $arr['createdAt'] = $entity->getCreatedAt();
-        }
-
-        return $arr;
-    }
-
-    /**
-     * @param array $goodsItems
-     * @return array
-     * @throws Exception
-     */
-    function arrayOfArrayToArrayOfEntities(array $goodsItems): array
-    {
-        $res = [];
-
-        foreach ($goodsItems as $item) {
-            $res[] = $this->arrayToEntity($item);
-        }
-
-        return $res;
-    }
-
-    /**
-     * @param GoodsEntity[] $goodsItems
-     * @return array
-     */
-    function arrayOfEntityToArrayOfArray(array $goodsItems): array
-    {
-        $res = [];
-
-        foreach ($goodsItems as $entity) {
-            $res[] = $this->entityToArray($entity);
-        }
-
-        return $res;
-    }
 }

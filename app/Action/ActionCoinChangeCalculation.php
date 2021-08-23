@@ -3,10 +3,10 @@ namespace App\Action;
 
 
 /**
- * Trait ActionCalculateCoinChange
+ * Trait ActionCoinChangeCalculation
  * @package App\Action
  */
-class ActionCalculateCoinChange
+class ActionCoinChangeCalculation
 {
     private array $combinationArray;
 

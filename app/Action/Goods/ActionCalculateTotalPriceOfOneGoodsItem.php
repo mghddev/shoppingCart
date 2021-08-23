@@ -3,7 +3,7 @@
 namespace App\Action\Goods;
 
 
-use App\Action\ActionCalculateCoinChange;
+use App\Action\ActionCoinChangeCalculation;
 use App\DAL\DTO\PriceDTO;
 use App\DAL\Repository\GoodsMysqlRepository;
 use Exception;
@@ -15,16 +15,16 @@ use Exception;
 class ActionCalculateTotalPriceOfOneGoodsItem
 {
     private GoodsMysqlRepository $goodsMysqlRepository;
-    private ActionCalculateCoinChange $actionCalculateCoinChange;
+    private ActionCoinChangeCalculation $actionCalculateCoinChange;
 
     /**
      * ActionCalculateTotalPriceOfOneGoodsItem constructor.
      * @param GoodsMysqlRepository $goodsMysqlRepository
-     * @param ActionCalculateCoinChange $actionCalculateCoinChange
+     * @param ActionCoinChangeCalculation $actionCalculateCoinChange
      */
     public function __construct(
         GoodsMysqlRepository $goodsMysqlRepository,
-        ActionCalculateCoinChange $actionCalculateCoinChange
+        ActionCoinChangeCalculation $actionCalculateCoinChange
     )
     {
         $this->goodsMysqlRepository = $goodsMysqlRepository;

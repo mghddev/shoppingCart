@@ -21,5 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group(['prefix' => 'prices'], function() {
-   Route::post('', HttpApiCalculatePrice::class)->name(RouteName::CALCULATE_PRICE);
+   Route::get('', HttpApiCalculatePrice::class)->name(RouteName::CALCULATE_PRICE);
 });

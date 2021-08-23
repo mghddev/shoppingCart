@@ -6,6 +6,8 @@
 ##Solution
 coin change
 
+## Docker part
+
 ## How to start:
 Before every thing it is necessary to create and complete the .env file according to .env.example file.
 Copy .env.example file and save it with .env name and customize it according to your environment.
@@ -23,3 +25,7 @@ Database is ready, now you should run seeder to and store some random and fake d
 ``docker-compose exec shopping_php php artisan``
 
 - 
+
+## Test
+
+``docker-compose exec shopping_php php artisan test``

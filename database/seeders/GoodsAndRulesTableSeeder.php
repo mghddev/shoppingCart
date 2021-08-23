@@ -33,7 +33,7 @@ class GoodsAndRulesTableSeeder extends Seeder
                         'specialPrice' => ($quantity * $unitPrice) - ($quantity * $j),
                         'isActive' => rand(0, 1),
                         'createdAt' => new \DateTime(),
-                        'updateAt' => new \DateTime()
+                        'updatedAt' => new \DateTime()
                     ];
                 }
 

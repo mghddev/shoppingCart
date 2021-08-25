@@ -9,10 +9,9 @@ use Illuminate\Database\Seeder;
 class GoodsAndRulesTableSeeder extends Seeder
 {
     const TITLES = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
     public function run()
     {
@@ -20,7 +19,9 @@ class GoodsAndRulesTableSeeder extends Seeder
             $unitPrice = rand(5, 20);
             $goodsItem = Goods::query()->create([
                 'title' => self::TITLES[$i],
-                'unitPrice' => $unitPrice
+                'unit_price' => $unitPrice,
+                'created_at' => new \DateTime(),
+                'updated_at' => new \DateTime()
             ]);
 
             if (rand(0, 1)) {
@@ -28,12 +29,12 @@ class GoodsAndRulesTableSeeder extends Seeder
                 for ($j = 1; $j < rand(2, 4); $j++) {
                     $quantity = (2 * $j) + $i;
                     $rules[] = [
-                        'goodsId' => $goodsItem->id,
+                        'goods_id' => $goodsItem->id,
                         'quantity' => $quantity,
-                        'specialPrice' => ($quantity * $unitPrice) - ($quantity * $j),
-                        'isActive' => rand(0, 1),
-                        'createdAt' => new \DateTime(),
-                        'updatedAt' => new \DateTime()
+                        'special_price' => ($quantity * $unitPrice) - ($quantity * $j),
+                        'is_active' => rand(0, 1),
+                        'created_at' => new \DateTime(),
+                        'updated_at' => new \DateTime()
                     ];
                 }
 

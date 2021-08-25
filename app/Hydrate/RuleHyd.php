@@ -11,16 +11,9 @@ use Exception;
  */
 class RuleHyd
 {
-
-    /**
-     * @var RuleEntity
-     */
     protected RuleEntity $entity;
 
     /**
-     * @param array $data
-     * @return RuleEntity
-     * @throws Exception
      * @throws Exception
      */
     private function arrayToEntity(array $data): RuleEntity
@@ -31,36 +24,34 @@ class RuleHyd
             $entity->setId($data['id']);
         }
 
-        if (isset($data['goodsId'])) {
-            $entity->setGoodsId($data['goodsId']);
+        if (isset($data['goods_id'])) {
+            $entity->setGoodsId($data['goods_id']);
         }
 
         if (isset($data['quantity'])) {
             $entity->setQuantity($data['quantity']);
         }
 
-        if (isset($data['specialPrice'])) {
-            $entity->setSpecialPrice($data['specialPrice']);
+        if (isset($data['special_price'])) {
+            $entity->setSpecialPrice($data['special_price']);
         }
 
-        if (isset($data['isActive'])) {
-            $entity->setIsActive($data['isActive']);
+        if (isset($data['is_active'])) {
+            $entity->setIsActive($data['is_active']);
         }
 
         if (isset($data['goodsEntity']) && !empty($data['goodsEntity'])) {
             $entity->setGoodsEntity($data['goodsEntity']);
         }
 
-        if (isset($data['createdAt'])) {
-            $entity->setCreatedAt(!empty($data['createdAt']) ? new DateTime($data['createdAt']) : null);
+        if (isset($data['created_at'])) {
+            $entity->setCreatedAt(!empty($data['created_at']) ? new DateTime($data['created_at']) : null);
         }
 
         return $entity;
     }
 
     /**
-     * @param array $rules
-     * @return array
      * @throws Exception
      */
     function arrayOfArrayToArrayOfEntities(array $rules): array

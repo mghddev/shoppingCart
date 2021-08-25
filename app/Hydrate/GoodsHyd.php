@@ -11,21 +11,11 @@ use Exception;
  */
 class GoodsHyd
 {
-    private RuleHyd $ruleHyd;
 
-    /**
-     * @var GoodsEntity
-     */
     protected GoodsEntity $entity;
 
-    /**
-     * GoodsHyd constructor.
-     * @param RuleHyd $ruleHyd
-     */
-    public function __construct(RuleHyd $ruleHyd)
-    {
-        $this->ruleHyd = $ruleHyd;
-    }
+    public function __construct(private RuleHyd $ruleHyd)
+    {}
 
 
     /**
@@ -65,16 +55,16 @@ class GoodsHyd
             $entity->setTitle($data['title']);
         }
 
-        if (isset($data['unitPrice'])) {
-            $entity->setUnitPrice($data['unitPrice']);
+        if (isset($data['unit_price'])) {
+            $entity->setUnitPrice($data['unit_price']);
         }
 
         if (isset($data['rules']) && !empty($data['rules'])) {
             $entity->setRules($this->ruleHyd->arrayOfArrayToArrayOfEntities($data['rules']));
         }
 
-        if (isset($data['createdAt'])) {
-            $entity->setCreatedAt(!empty($data['createdAt']) ? new DateTime($data['createdAt']) : null);
+        if (isset($data['created_at'])) {
+            $entity->setCreatedAt(!empty($data['created_at']) ? new DateTime($data['created_at']) : null);
         }
 
         return $entity;

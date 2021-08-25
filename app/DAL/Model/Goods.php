@@ -13,16 +13,14 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Goods extends Model
 {
     public $table = TableName::GOODS;
-    const CREATED_AT = 'createdAt';
-    const UPDATED_AT = 'updatedAt';
 
-    protected $fillable = ['title', 'unitPrice'];
+    protected $fillable = ['title', 'unit_price'];
 
     /**
      * @return HasMany
      */
     public function rules(): HasMany
     {
-        return $this->hasMany(Rule::class, 'goodsId', 'id');
+        return $this->hasMany(Rule::class, 'goods_id', 'id');
     }
 }

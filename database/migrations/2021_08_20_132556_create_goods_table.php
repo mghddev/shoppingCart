@@ -16,9 +16,8 @@ class CreateGoodsTable extends Migration
         Schema::create('goods', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->float('unitPrice');
-            $table->timestamp('createdAt')->nullable();
-            $table->timestamp('updatedAt')->nullable();
+            $table->float('unit_price');
+            $table->timestamps();
         });
     }
 

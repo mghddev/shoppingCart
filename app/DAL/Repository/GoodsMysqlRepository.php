@@ -14,19 +14,8 @@ use Exception;
 class GoodsMysqlRepository implements GoodsRepositoryInterface
 {
 
-    private Goods $model;
-    private GoodsHyd $goodsHyd;
-
-    /**
-     * GoodsRepository constructor.
-     * @param Goods $model
-     * @param GoodsHyd $goodsHyd
-     */
-    public function __construct(Goods $model, GoodsHyd $goodsHyd)
-    {
-        $this->model = $model;
-        $this->goodsHyd = $goodsHyd;
-    }
+    public function __construct(private Goods $model, private GoodsHyd $goodsHyd)
+    {}
 
 
     /**
@@ -36,7 +25,7 @@ class GoodsMysqlRepository implements GoodsRepositoryInterface
     {
         $goodsItem = $this->model->newQuery()
             ->with(['rules' => function ($query) use ($neededQuantity) {
-                $query->where('isActive', '=', true)
+                $query->where('is_active', '=', true)
                     ->where('quantity', '<', $neededQuantity);
             }])->find($id);
         if (empty($goodsItem)) {

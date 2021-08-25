@@ -8,26 +8,21 @@ class CreateRulesTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
         Schema::create('rules', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('goodsId');
+            $table->foreignId('goods_id');
             $table->integer('quantity');
-            $table->float('specialPrice');
-            $table->boolean('isActive')->default(true);
-            $table->timestamp('createdAt')->nullable();
-            $table->timestamp('updatedAt')->nullable();
+            $table->float('special_price');
+            $table->boolean('is_active')->default(true);
+            $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {

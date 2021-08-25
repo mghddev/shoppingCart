@@ -1,4 +1,4 @@
-FROM php:7.4.3-fpm
+FROM php:8.0.0rc1-fpm
 
 ARG WWW_DATA_USER
 ARG ENVIRONMENT

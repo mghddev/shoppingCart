@@ -1,30 +1,16 @@
 <?php
 namespace App\Action\Goods;
 
-
 use App\DAL\DTO\PriceDTO;
 use Exception;
 
-/**
- * Class ActionCalculateTotalPrice
- * @package App\Action\Goods
- */
 class ActionCalculateTotalPrice
 {
-    private ActionCalculateTotalPriceOfOneGoodsItem $actionCalculateTotalPriceOfOneGoodsItem;
+
+    public function __construct(public ActionCalculateTotalPriceOfOneGoodsItem $actionCalculateTotalPriceOfOneGoodsItem)
+    {}
 
     /**
-     * ActionCalculateTotalPrice constructor.
-     * @param ActionCalculateTotalPriceOfOneGoodsItem $actionCalculateTotalPriceOfOneGoodsItem
-     */
-    public function __construct(ActionCalculateTotalPriceOfOneGoodsItem $actionCalculateTotalPriceOfOneGoodsItem)
-    {
-        $this->actionCalculateTotalPriceOfOneGoodsItem = $actionCalculateTotalPriceOfOneGoodsItem;
-    }
-
-    /**
-     * @param string $items
-     * @return PriceDTO
      * @throws Exception
      */
     public function __invoke(string $items): PriceDTO
@@ -53,9 +39,6 @@ class ActionCalculateTotalPrice
     /**
      * This method converts string of items to array of number of every goods item
      * i.e. $items = 1,1,2,5,5,5,4,2 => return [1 => 2, 2 => 2, 4 => 1, 5 => 3]
-     *
-     * @param string $items
-     * @return array
      */
     private function getNumberOfItemsArray(string $items): array
     {

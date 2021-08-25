@@ -14,27 +14,14 @@ use Exception;
  */
 class ActionCalculateTotalPriceOfOneGoodsItem
 {
-    private GoodsMysqlRepository $goodsMysqlRepository;
-    private ActionCoinChangeCalculation $actionCalculateCoinChange;
 
-    /**
-     * ActionCalculateTotalPriceOfOneGoodsItem constructor.
-     * @param GoodsMysqlRepository $goodsMysqlRepository
-     * @param ActionCoinChangeCalculation $actionCalculateCoinChange
-     */
     public function __construct(
-        GoodsMysqlRepository $goodsMysqlRepository,
-        ActionCoinChangeCalculation $actionCalculateCoinChange
+        public GoodsMysqlRepository $goodsMysqlRepository,
+        public ActionCoinChangeCalculation $actionCalculateCoinChange
     )
-    {
-        $this->goodsMysqlRepository = $goodsMysqlRepository;
-        $this->actionCalculateCoinChange = $actionCalculateCoinChange;
-    }
+    {}
 
     /**
-     * @param int $id
-     * @param int $number
-     * @return PriceDTO
      * @throws Exception
      */
     public function __invoke(int $id, int $number = 1): PriceDTO
@@ -68,10 +55,6 @@ class ActionCalculateTotalPriceOfOneGoodsItem
      * This method calculates total price of every states according to special perice in every rule
      *  (i.e. number of item = 9 $states[2] = [1,3,5]
      *   => totalPrices[2] = unitPrice + specialPrice of rule3 + specialPrice of rule5)
-     *
-     * @param array $states
-     * @param array $specialPrices
-     * @return array
      */
     private function calculateTotalPriceForDifferentStates(array $states, array $specialPrices): array
     {
@@ -84,6 +67,7 @@ class ActionCalculateTotalPriceOfOneGoodsItem
             }
             $totalPrices[] = $statePrice;
         }
+
         return $totalPrices;
     }
 }

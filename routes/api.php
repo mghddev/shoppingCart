@@ -16,10 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
-Route::group(['prefix' => 'prices'], function() {
-   Route::get('', HttpApiCalculatePrice::class)->name(RouteName::CALCULATE_PRICE);
+Route::group(['prefix' => 'price'], function() {
+   Route::post('/', HttpApiCalculatePrice::class)->name(RouteName::CALCULATE_PRICE);
 });

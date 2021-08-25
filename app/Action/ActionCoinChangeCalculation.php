@@ -2,19 +2,10 @@
 namespace App\Action;
 
 
-/**
- * Trait ActionCoinChangeCalculation
- * @package App\Action
- */
 class ActionCoinChangeCalculation
 {
     private array $combinationArray;
 
-    /**
-     * @param int $n
-     * @param array $numbers
-     * @return array
-     */
     public function __invoke(int $n, array $numbers): array
     {
         // array to store the combinations
@@ -28,16 +19,10 @@ class ActionCoinChangeCalculation
         return $this->combinationArray;
     }
 
-    /**
-     * @param array $arr
-     * @param array $numbers
-     * @param int $index
-     * @param int $num
-     * @param int $reducedNum
-     */
     private function findCombinationsUtil(array $arr, array $numbers, int $index, int $num, int $reducedNum)
     {
         if ($reducedNum < 0) {
+
             return;
         }
 
@@ -48,6 +33,7 @@ class ActionCoinChangeCalculation
                 $fullArr[] = $arr[$i];
             }
             $this->combinationArray[] = $fullArr;
+
             return;
         }
 

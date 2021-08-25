@@ -17,7 +17,6 @@ class GoodsMysqlRepository implements GoodsRepositoryInterface
     public function __construct(private Goods $model, private GoodsHyd $goodsHyd)
     {}
 
-
     /**
      * @throws Exception
      */

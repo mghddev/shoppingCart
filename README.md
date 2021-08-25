@@ -1,31 +1,76 @@
 
 ## About Shopping Cart
+This application provides an endpoint for order pricing calculation.
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 32"><title>shopping-cart@1x</title><g id="Layer_2" data-name="Layer 2"><g id="E-Commerce"><g id="Shopping_Cart_2x.png" data-name="Shopping Cart@2x.png"><path d="M40,25.24h0l4-18h0A1,1,0,0,0,44,7a1,1,0,0,0-1-1H10.94L9.52.71h0A1,1,0,0,0,8.56,0H1A1,1,0,0,0,1,2H7.8L14,25.29h0a1,1,0,0,0,.56.63A4,4,0,0,0,14,28a4,4,0,0,0,8,0,4,4,0,0,0-.55-2H32.55A4,4,0,0,0,32,28a4,4,0,0,0,8,0,4,4,0,0,0-.6-2.09A1,1,0,0,0,40,25.24ZM35.89,8h5.86l-.89,4H35.45ZM11.47,8h6.63l.44,4h-6Zm2.68,10-1.07-4h5.69l.45,4Zm.54,2h4.75l.44,4H15.77ZM18,30a2,2,0,1,1,2-2A2,2,0,0,1,18,30Zm8-6H21.89l-.44-4H26Zm0-6H21.23l-.45-4H26Zm0-6H20.56l-.44-4H26Zm6.11,12H28V20h4.55Zm.67-6H28V14h5.22Zm.67-6H28V8h5.88ZM36,30a2,2,0,1,1,2-2A2,2,0,0,1,36,30Zm2.2-6H34.12l.44-4h4.53Zm-3.41-6,.45-4h5.19l-.89,4Z"/></g></g></g></svg>
+### Features Overview
+- Dockerized and isolated app
+- Error handling
+- Test (unit and feature) developed with AAA pattern for making test.
+- API documentation prepared by postman and is placed in `/documentionAPI` folder in root of project
 
-##Solution
-coin change
+### Challenge
+The most import part of project is calculation of order for different rules and different special prices. 
+The goal is calculating minimum total price for an order according to active rules of goods. Because of existence of different combination of rules for every order, it is needed to fetch all possible combinations.
+It is challenge of this problem.
 
-## Docker part
+### Solution
+The coin changing problem is a well-known problem to the computer scientists. The problem is a good example of the
+recursive nature of many problem-solving techniques. In this problem, we want to find all combinations of a finite set of
+monetary value coins for making change. 
+Finally, after fetching combinations with coin change algorithm, we calculate total price for every combination and minimum value is the calculated total price.
 
-## How to start:
-Before every thing it is necessary to create and complete the .env file according to .env.example file.
-Copy .env.example file and save it with .env name and customize it according to your environment.
+## Installation guide
+Follow these steps to simply run the project.
 
-For starting the project and building its containers should be run below command:
+### Clone the project
+Clone this repository to your local machine using the following command:
+
+``git clone git@github.com:mghddev/shoppingCart.git``
+
+
+### Environment variables
+There is a `.env.example` file in the project root directory containing OS level environment variables that are used for deploying the whole application.
+Every single variable inside the file has a default value, so you do not need to change them; But you can also override your own variables. First copy the example file to the `.env` file:
+
+``cd /path-to-project``
+
+``cp .env.example .env``
+
+
+Then open your favorite text editor like `vim` or `nano` and change the variables. All variables have comments which describe them.
+
+
+### Start Docker
+You should build the project docker containers at first. Run below command at path of project:
 
 ``docker-compose up -d --build``
 
 This command would create containers that are needed in this project and run ``composer install`` inside of the php container and install project libraries.
 
+It would be run all containers besides building them. 
+This project has 4 different containers are created as below:
+- php:8.0.0rc1-fpm with shopping_php name
+- nginx:1.17.7 with shopping_web name
+- mysql:8.0.22 with shopping_mysql name
+- phpmyadmin/phpmyadmin:5.0.1 with shopping_phpmyadmin name
+
+### Database
 After preparing the application, the below command should be run to create tables of database.
 
-Database is ready, now you should run seeder to and store some random and fake data if you need it
+``docker-compose exec shopping_php php artisan migrate``
+
+Database is ready, now you should run seeder to and store some random and fake data if you need it.
 
 ``docker-compose exec shopping_php php artisan``
 
-- 
-
 ## Test
 
+There are Unit test of calculation coin change besides the feature test of calculating price api. There are placed in `/tests` folder of project and would be run with below command:
+
 ``docker-compose exec shopping_php php artisan test``
+
+
+## Author
+Mohammad Ghaderi Darebaghi 
+  - [Linkedin](https://www.linkedin.com/in/mohammad-ghaderi-69b8569b/)
+  - [Github](https://github.com/mghddev)

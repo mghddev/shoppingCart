@@ -3,8 +3,6 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;
@@ -16,27 +14,16 @@ class Handler extends ExceptionHandler
      *
      * @var array
      */
-    protected $dontReport = [
-        //
-    ];
+    protected $dontReport = [];
 
     /**
      * A list of the inputs that are never flashed for validation exceptions.
      *
      * @var array
      */
-    protected $dontFlash = [
-        'current_password',
-        'password',
-        'password_confirmation',
-    ];
+    protected $dontFlash = ['current_password', 'password', 'password_confirmation'];
 
-    /**
-     * Register the exception handling callbacks for the application.
-     *
-     * @return void
-     */
-    public function register()
+    public function register(): void
     {
         $this->reportable(
             function (Throwable $e) {
@@ -46,24 +33,20 @@ class Handler extends ExceptionHandler
     }
 
     /**
-     * @param  Request   $request
-     * @param  Throwable $e
-     * @return JsonResponse|\Illuminate\Http\Response|Response
      * @throws Throwable
      */
-    public function render($request, Throwable $e)
+    public function render($request, Throwable $e): Response
     {
         if ($e instanceof ValidationException) {
             return response()->json(
                 [
                 'message' => 'validation exception message',
                 'code' => 20000,
-                'errors' => $e->errors()
+                'errors' => $e->validator->errors()->getMessages()
                 ],
                 400
             );
         }
-
         if ($e instanceof ExceptionGoodsNotFound) {
             return response()->json(
                 [

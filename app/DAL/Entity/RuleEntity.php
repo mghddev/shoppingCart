@@ -4,26 +4,14 @@ namespace App\DAL\Entity;
 
 use DateTime;
 
-/**
- * Class RuleEntity
- *
- * @package App\DAL\Entity
- */
 class RuleEntity
 {
-
     private ?int $id = null;
-
     private ?int $goodsId = null;
-
     private ?GoodsEntity $goodsEntity = null;
-
     private ?int $quantity = null;
-
     private ?float $specialPrice = null;
-
     private ?bool $isActive = null;
-
     private ?DateTime $createdAt = null;
 
     public function getId(): ?int
@@ -34,6 +22,7 @@ class RuleEntity
     public function setId(?int $id): RuleEntity
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -45,6 +34,7 @@ class RuleEntity
     public function setGoodsId(?int $goodsId): RuleEntity
     {
         $this->goodsId = $goodsId;
+
         return $this;
     }
 
@@ -56,6 +46,7 @@ class RuleEntity
     public function setGoodsEntity(?GoodsEntity $goodsEntity): RuleEntity
     {
         $this->goodsEntity = $goodsEntity;
+
         return $this;
     }
 
@@ -67,6 +58,7 @@ class RuleEntity
     public function setQuantity(?int $quantity): RuleEntity
     {
         $this->quantity = $quantity;
+
         return $this;
     }
 
@@ -78,6 +70,7 @@ class RuleEntity
     public function setSpecialPrice(?float $specialPrice): RuleEntity
     {
         $this->specialPrice = $specialPrice;
+
         return $this;
     }
 
@@ -89,6 +82,7 @@ class RuleEntity
     public function setIsActive(?bool $isActive): RuleEntity
     {
         $this->isActive = $isActive;
+
         return $this;
     }
 
@@ -100,6 +94,7 @@ class RuleEntity
     public function setCreatedAt(?DateTime $createdAt): RuleEntity
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 }

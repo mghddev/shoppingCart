@@ -7,15 +7,10 @@ use App\DAL\Model\Goods;
 use App\Exceptions\ExceptionGoodsNotFound;
 use App\Hydrate\GoodsHyd;
 use Exception;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-/**
- * Class GoodsRepository
- *
- * @package App\DAL\Repository
- */
 class GoodsMysqlRepository implements GoodsRepositoryInterface
 {
-
     public function __construct(private Goods $model, private GoodsHyd $goodsHyd)
     {
     }
@@ -27,7 +22,7 @@ class GoodsMysqlRepository implements GoodsRepositoryInterface
     {
         $goodsItem = $this->model->newQuery()
             ->with(
-                ['rules' => function ($query) use ($neededQuantity) {
+                ['rules' => function (HasMany $query) use ($neededQuantity): void {
                     $query->where('is_active', '=', true)
                         ->where('quantity', '<', $neededQuantity);
                 }]

@@ -7,16 +7,11 @@ use App\DAL\DTO\PriceDTO;
 use App\DAL\Repository\GoodsMysqlRepository;
 use Exception;
 
-/**
- * Class ActionCalculateTotalPriceOfOneGoodsItem
- *
- * @package App\Action\Goods
- */
 class ActionCalculateTotalPriceOfOneGoodsItem
 {
     public function __construct(
-        public GoodsMysqlRepository $goodsMysqlRepository,
-        public ActionCoinChangeCalculation $actionCalculateCoinChange
+        private GoodsMysqlRepository $goodsMysqlRepository,
+        private ActionCoinChangeCalculation $actionCalculateCoinChange
     ) {
     }
 

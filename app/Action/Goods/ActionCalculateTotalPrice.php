@@ -7,9 +7,9 @@ use Exception;
 
 class ActionCalculateTotalPrice
 {
-
-    public function __construct(public ActionCalculateTotalPriceOfOneGoodsItem $actionCalculateTotalPriceOfOneGoodsItem)
-    {
+    public function __construct(
+        private ActionCalculateTotalPriceOfOneGoodsItem $actionCalculateTotalPriceOfOneGoodsItem
+    ) {
     }
 
     /**
@@ -24,12 +24,11 @@ class ActionCalculateTotalPrice
         $numberOfItems = 0;
 
         foreach ($itemsArray as $key => $number) {
-            $minPrices[$key] = $this->actionCalculateTotalPriceOfOneGoodsItem->__invoke((int) $key, $number);
+            $minPrices[$key] = ($this->actionCalculateTotalPriceOfOneGoodsItem)((int) $key, $number);
             $numberOfItems += $number;
             $totalPrice += $minPrices[$key]->getPrice();
             $totalProfit += $minPrices[$key]->getPurchaseProfit();
         }
-
 
         return (new PriceDTO())
             ->setName('Total price')
@@ -45,7 +44,6 @@ class ActionCalculateTotalPrice
     private function getNumberOfItemsArray(string $items): array
     {
         $dataArray = explode(',', $items);
-
         $totalItems = [];
         foreach ($dataArray as $item) {
             if (array_key_exists($item, $totalItems)) {

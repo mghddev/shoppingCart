@@ -9,7 +9,6 @@ use Exception;
 
 class HttpApiCalculatePrice
 {
-
     public function __construct(private ActionCalculateTotalPrice $actionCalculateTotalPrice)
     {
     }
@@ -19,7 +18,7 @@ class HttpApiCalculatePrice
      */
     public function __invoke(GoodsItemsRequest $request): PriceResource
     {
-        $price = $this->actionCalculateTotalPrice->__invoke($request->get('items'));
+        $price = ($this->actionCalculateTotalPrice)($request->get('items'));
 
         return (new PriceResource($price));
     }

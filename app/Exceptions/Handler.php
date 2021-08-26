@@ -44,7 +44,7 @@ class Handler extends ExceptionHandler
                 'code' => 20000,
                 'errors' => $e->validator->errors()->getMessages()
                 ],
-                400
+                Response::HTTP_UNPROCESSABLE_ENTITY
             );
         }
         if ($e instanceof ExceptionGoodsNotFound) {
@@ -53,7 +53,7 @@ class Handler extends ExceptionHandler
                 'message' => $e->getMessage(),
                 'code' => 20001,
                 ],
-                404
+                Response::HTTP_NOT_FOUND
             );
         }
 

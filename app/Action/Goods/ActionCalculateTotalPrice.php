@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Action\Goods;
 
 use App\DAL\DTO\PriceDTO;
@@ -8,7 +9,8 @@ class ActionCalculateTotalPrice
 {
 
     public function __construct(public ActionCalculateTotalPriceOfOneGoodsItem $actionCalculateTotalPriceOfOneGoodsItem)
-    {}
+    {
+    }
 
     /**
      * @throws Exception

@@ -11,14 +11,16 @@ class CreateRulesTable extends Migration
      */
     public function up()
     {
-        Schema::create('rules', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('goods_id');
-            $table->integer('quantity');
-            $table->float('special_price');
-            $table->boolean('is_active')->default(true);
-            $table->timestamps();
-        });
+        Schema::create(
+            'rules', function (Blueprint $table) {
+                $table->id();
+                $table->foreignId('goods_id');
+                $table->integer('quantity');
+                $table->float('special_price');
+                $table->boolean('is_active')->default(true);
+                $table->timestamps();
+            }
+        );
     }
 
     /**

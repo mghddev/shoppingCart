@@ -1,6 +1,6 @@
 <?php
-namespace App\Action;
 
+namespace App\Action;
 
 class ActionCoinChangeCalculation
 {
@@ -14,7 +14,7 @@ class ActionCoinChangeCalculation
         $this->combinationArray = array();
 
         //find all combinations
-        $this->findCombinationsUtil($arr, $numbers,0, $n, $n);
+        $this->findCombinationsUtil($arr, $numbers, 0, $n, $n);
 
         return $this->combinationArray;
     }
@@ -22,12 +22,10 @@ class ActionCoinChangeCalculation
     private function findCombinationsUtil(array $arr, array $numbers, int $index, int $num, int $reducedNum)
     {
         if ($reducedNum < 0) {
-
             return;
         }
 
-        if ($reducedNum == 0)
-        {
+        if ($reducedNum == 0) {
             $fullArr = [];
             for ($i = 0; $i < $index; $i++) {
                 $fullArr[] = $arr[$i];
@@ -44,11 +42,10 @@ class ActionCoinChangeCalculation
         $k = $prev;
         while ($reducedNum > 0 && ($k < count($numbers))) {
             $k++;
-            $arr[$index] = $numbers[$k-1];
+            $arr[$index] = $numbers[$k - 1];
 
             // call recursively with reduced value
-            $this->findCombinationsUtil($arr, $numbers, $index + 1, $num, $reducedNum - $numbers[$k-1]);
+            $this->findCombinationsUtil($arr, $numbers, $index + 1, $num, $reducedNum - $numbers[$k - 1]);
         }
-
     }
 }

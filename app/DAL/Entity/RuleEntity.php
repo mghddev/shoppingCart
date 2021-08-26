@@ -1,10 +1,12 @@
 <?php
+
 namespace App\DAL\Entity;
 
 use DateTime;
 
 /**
  * Class RuleEntity
+ *
  * @package App\DAL\Entity
  */
 class RuleEntity
@@ -100,5 +102,4 @@ class RuleEntity
         $this->createdAt = $createdAt;
         return $this;
     }
-
 }

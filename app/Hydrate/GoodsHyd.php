@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Hydrate;
 
 use App\DAL\Entity\GoodsEntity;
@@ -7,6 +8,7 @@ use Exception;
 
 /**
  * Class GoodsHyd
+ *
  * @package App\Hydrate
  */
 class GoodsHyd
@@ -15,15 +17,16 @@ class GoodsHyd
     protected GoodsEntity $entity;
 
     public function __construct(private RuleHyd $ruleHyd)
-    {}
+    {
+    }
 
 
     /**
-     * @param array $data
+     * @param  array $data
      * @return $this
      * @throws Exception
      */
-    function fromArray(array $data) : GoodsHyd
+    public function fromArray(array $data): GoodsHyd
     {
         $this->entity = $this->arrayToEntity($data);
 
@@ -33,13 +36,13 @@ class GoodsHyd
     /**
      * @return GoodsEntity
      */
-    function toEntity(): GoodsEntity
+    public function toEntity(): GoodsEntity
     {
         return $this->entity;
     }
 
     /**
-     * @param array $data
+     * @param  array $data
      * @return GoodsEntity
      * @throws Exception
      */
@@ -69,5 +72,4 @@ class GoodsHyd
 
         return $entity;
     }
-
 }

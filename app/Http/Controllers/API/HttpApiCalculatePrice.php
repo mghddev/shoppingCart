@@ -1,6 +1,6 @@
 <?php
-namespace App\Http\Controllers\API;
 
+namespace App\Http\Controllers\API;
 
 use App\Action\Goods\ActionCalculateTotalPrice;
 use App\Http\Requests\GoodsItemsRequest;
@@ -10,8 +10,9 @@ use Exception;
 class HttpApiCalculatePrice
 {
 
-    public function __construct(public ActionCalculateTotalPrice $actionCalculateTotalPrice)
-    {}
+    public function __construct(private ActionCalculateTotalPrice $actionCalculateTotalPrice)
+    {
+    }
 
     /**
      * @throws Exception

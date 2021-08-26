@@ -1,4 +1,5 @@
 <?php
+
 namespace App\DAL\Model;
 
 use App\Constant\TableName;
@@ -7,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class Rule
+ *
  * @package App\DAL\Model
  */
 class Rule extends Model

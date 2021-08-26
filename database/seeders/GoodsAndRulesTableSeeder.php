@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\DAL\Model\Goods;
 use App\DAL\Model\Rule;
+use DateTime;
 use Illuminate\Database\Seeder;
 
 class GoodsAndRulesTableSeeder extends Seeder
@@ -17,12 +18,14 @@ class GoodsAndRulesTableSeeder extends Seeder
     {
         for ($i = 0; $i <= 6; $i++) {
             $unitPrice = rand(5, 20);
-            $goodsItem = Goods::query()->create([
+            $goodsItem = Goods::query()->create(
+                [
                 'title' => self::TITLES[$i],
                 'unit_price' => $unitPrice,
-                'created_at' => new \DateTime(),
-                'updated_at' => new \DateTime()
-            ]);
+                'created_at' => new DateTime(),
+                'updated_at' => new DateTime()
+                ]
+            );
 
             if (rand(0, 1)) {
                 $rules = [];
@@ -33,8 +36,8 @@ class GoodsAndRulesTableSeeder extends Seeder
                         'quantity' => $quantity,
                         'special_price' => ($quantity * $unitPrice) - ($quantity * $j),
                         'is_active' => rand(0, 1),
-                        'created_at' => new \DateTime(),
-                        'updated_at' => new \DateTime()
+                        'created_at' => new DateTime(),
+                        'updated_at' => new DateTime()
                     ];
                 }
 

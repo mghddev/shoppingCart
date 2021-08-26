@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Hydrate;
 
 use App\DAL\Entity\RuleEntity;
@@ -7,6 +8,7 @@ use Exception;
 
 /**
  * Class RuleHyd
+ *
  * @package App\Hydrate
  */
 class RuleHyd
@@ -18,7 +20,7 @@ class RuleHyd
      */
     private function arrayToEntity(array $data): RuleEntity
     {
-        $entity = new RuleEntity ();
+        $entity = new RuleEntity();
 
         if (isset($data['id'])) {
             $entity->setId($data['id']);
@@ -54,7 +56,7 @@ class RuleHyd
     /**
      * @throws Exception
      */
-    function arrayOfArrayToArrayOfEntities(array $rules): array
+    public function arrayOfArrayToArrayOfEntities(array $rules): array
     {
         $res = [];
 

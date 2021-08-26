@@ -13,12 +13,14 @@ class CreateGoodsTable extends Migration
      */
     public function up()
     {
-        Schema::create('goods', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->float('unit_price');
-            $table->timestamps();
-        });
+        Schema::create(
+            'goods', function (Blueprint $table) {
+                $table->id();
+                $table->string('title');
+                $table->float('unit_price');
+                $table->timestamps();
+            }
+        );
     }
 
     /**

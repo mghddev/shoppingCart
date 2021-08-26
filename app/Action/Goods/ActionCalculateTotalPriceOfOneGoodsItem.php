@@ -2,7 +2,6 @@
 
 namespace App\Action\Goods;
 
-
 use App\Action\ActionCoinChangeCalculation;
 use App\DAL\DTO\PriceDTO;
 use App\DAL\Repository\GoodsMysqlRepository;
@@ -10,16 +9,16 @@ use Exception;
 
 /**
  * Class ActionCalculateTotalPriceOfOneGoodsItem
+ *
  * @package App\Action\Goods
  */
 class ActionCalculateTotalPriceOfOneGoodsItem
 {
-
     public function __construct(
         public GoodsMysqlRepository $goodsMysqlRepository,
         public ActionCoinChangeCalculation $actionCalculateCoinChange
-    )
-    {}
+    ) {
+    }
 
     /**
      * @throws Exception
@@ -36,7 +35,6 @@ class ActionCalculateTotalPriceOfOneGoodsItem
                 $numbers[] = $rule->getQuantity();
                 $specialPrices[$rule->getQuantity()] = $rule->getSpecialPrice();
             }
-
             $states = $this->actionCalculateCoinChange->__invoke($number, $numbers);
             $totalPrices = $this->calculateTotalPriceForDifferentStates($states, $specialPrices);
             sort($totalPrices);
@@ -59,7 +57,6 @@ class ActionCalculateTotalPriceOfOneGoodsItem
     private function calculateTotalPriceForDifferentStates(array $states, array $specialPrices): array
     {
         $totalPrices = [];
-
         foreach ($states as $state) {
             $statePrice = 0;
             foreach ($state as $item) {

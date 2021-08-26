@@ -1,10 +1,12 @@
 <?php
+
 namespace App\DAL\Entity;
 
 use DateTime;
 
 /**
  * Class GoodsEntity
+ *
  * @package App\DAL\Entity
  */
 class GoodsEntity

@@ -38,32 +38,40 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        $this->reportable(function (Throwable $e) {
-            //
-        });
+        $this->reportable(
+            function (Throwable $e) {
+                //
+            }
+        );
     }
 
     /**
-     * @param Request $request
-     * @param Throwable $e
+     * @param  Request   $request
+     * @param  Throwable $e
      * @return JsonResponse|\Illuminate\Http\Response|Response
      * @throws Throwable
      */
     public function render($request, Throwable $e)
     {
         if ($e instanceof ValidationException) {
-            return response()->json([
+            return response()->json(
+                [
                 'message' => 'validation exception message',
                 'code' => 20000,
                 'errors' => $e->errors()
-            ], 400);
+                ],
+                400
+            );
         }
 
         if ($e instanceof ExceptionGoodsNotFound) {
-            return response()->json([
+            return response()->json(
+                [
                 'message' => $e->getMessage(),
                 'code' => 20001,
-            ], 404);
+                ],
+                404
+            );
         }
 
         return parent::render($request, $e);

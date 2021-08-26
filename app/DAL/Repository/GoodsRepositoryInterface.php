@@ -1,10 +1,12 @@
 <?php
+
 namespace App\DAL\Repository;
 
 use App\DAL\Entity\GoodsEntity;
 
 /**
  * Interface GoodsRepositoryInterface
+ *
  * @package App\DAL\Repository
  */
 interface GoodsRepositoryInterface

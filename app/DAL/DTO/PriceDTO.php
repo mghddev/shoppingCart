@@ -1,8 +1,10 @@
 <?php
+
 namespace App\DAL\DTO;
 
 /**
  * Class PriceDTO
+ *
  * @package App\DAL\DTO
  */
 class PriceDTO
@@ -37,7 +39,7 @@ class PriceDTO
     }
 
     /**
-     * @param string $name
+     * @param  string $name
      * @return $this
      */
     public function setName(string $name): PriceDTO
@@ -55,7 +57,7 @@ class PriceDTO
     }
 
     /**
-     * @param int $quantity
+     * @param  int $quantity
      * @return $this
      */
     public function setQuantity(int $quantity): PriceDTO
@@ -73,7 +75,7 @@ class PriceDTO
     }
 
     /**
-     * @param float $price
+     * @param  float $price
      * @return $this
      */
     public function setPrice(float $price): PriceDTO
@@ -91,7 +93,7 @@ class PriceDTO
     }
 
     /**
-     * @param $purchaseProfit
+     * @param  $purchaseProfit
      * @return $this
      */
     public function setPurchaseProfit($purchaseProfit): PriceDTO

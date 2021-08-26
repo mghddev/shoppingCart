@@ -22,7 +22,6 @@ class ActionCoinChangeCalculationTest extends TestCase
 
         //Assert
         $this->assertIsArray($actual);
-        $this->assertCount(6, $actual);
         $this->assertEquals($expected, $actual);
     }
 
@@ -41,16 +40,35 @@ class ActionCoinChangeCalculationTest extends TestCase
                     [5, 5, 5, 5]]
             ],
             [
-                [2, 5, 8],
+                [20, 50, 80],
+                10,
+                []
+            ],
+            [
+                [20, 50, 80],
                 20,
+                [[20]]
+            ],
+            [
+                [5, 8],
+                12,
+                []
+            ],
+            [
+                [1, 5, 8],
+                12,
                 [
-                    [2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
-                    [2, 2, 2, 2, 2, 2, 8],
-                    [2, 2, 2, 2, 2, 5, 5],
-                    [2, 2, 8, 8],
-                    [2, 5, 5, 8],
-                    [5, 5, 5, 5]]
-            ], //TODO: add more test cases
+                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                    [1, 1, 1, 1, 1, 1, 1, 5],
+                    [1, 1, 1, 1, 8],
+                    [1, 1, 5, 5]
+                ]
+            ],
+            [
+                [5, 8],
+                13,
+                [[5, 8]]
+            ]
         ];
     }
 }
